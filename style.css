@@ -1,0 +1,431 @@
+/* === Global Layout === */
+body {
+  margin: 0;
+  background: #111
+}
+
+
+/* === Intro Background === */
+#intro-bg {
+  position: fixed;
+  inset: 0;
+  background: url('assets/images/intro-bg.jpg') center center / cover no-repeat;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+  z-index: 999;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.fade-in {
+  opacity: 1 !important;
+}
+/* === Intro Text & Map UI Fade Logic === */
+#intro-text,
+#mapUI {
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+}
+
+#intro-text.show,
+#mapUI.show {
+  opacity: 1;
+}
+
+/* === Hidden Utility === */
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+.show {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.5s ease-in, visibility 0.5s ease-in;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+/* === Modals === */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0);
+  overflow: hidden;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.modal.show {
+  opacity: 1;
+}
+
+.modal.fullscreen {
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.modal-content {
+  position: relative;
+  z-index: 2;
+  background: rgba(30, 49, 67, 0.92);
+  color: rgb(238, 234, 230);
+  padding: 2rem;
+  max-width: 800px;
+  width: 90%;
+  text-align: left;
+  overflow-y: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  font-family: 'Georgia', serif;
+  font-size: 18px;
+  line-height: 1.7;
+  max-height: 80vh; /* Limit modal height */
+}
+
+.modal-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: lab(82.42% 4.41 40.41 / 0.808);
+  text-align: left;
+}
+
+.modal-content p {
+  font-size: 1.1rem;
+  margin: 1rem 0;
+}
+
+.modal-content button {
+  display: inline-block;
+  margin: 2rem auto 0 auto; /* Top margin + center align */
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-family: 'Georgia', serif;
+  background-color: rgb(238, 234, 230);
+  color: rgba(23, 33, 48, 0.92);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.modal-content button:hover {
+  background-color: #e0e0e0;
+}
+/* Optional container if you want multiple buttons grouped together */
+.header-buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* General button reset styling (careful if this affects other buttons globally!) */
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* If you're using icon-based buttons */
+.icon {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+}
+
+/* Reference button positioning and style */
+#referenceBtn {
+  position: fixed; /* fixed = stays in place during scroll */
+  bottom: 15px;
+  right: 15px; /* Adjust this based on layout */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 900;
+  padding: 0;
+  display: none;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+#referenceBtn img {
+  width: 170px;   /* <-- icon is always this size */
+  height: 170px;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+#referenceBtn.show {
+  display: block;
+  opacity: 1;
+}
+
+
+#referenceBtn:hover img {
+  opacity: 0.7; /* only affect opacity, not size */
+}
+
+/* Reference modal fade-in and fade-out */
+#referenceModal {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+#referenceModal.show {
+  opacity: 1;
+}
+#referenceModal a {
+  color: rgb(238, 234, 230);
+  text-decoration: underline; /* Optional */
+  transition: color 0.3s ease;
+}
+
+#referenceModal a:hover {
+  color: #ffffff; 
+}
+/* === Disclaimer (sharp appearance) === */
+
+#disclaimer {
+  display: none;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+  z-index: 1002;
+  align-items: center;
+  justify-content: center;
+}
+
+#disclaimer.show {
+  display: flex;
+  opacity: 1;
+}
+
+#disclaimer.fade-out {
+  opacity: 0;
+}
+
+
+/* === Intro Conflict Prevention === */
+#intro-text,
+#disclaimer {
+  z-index: 1002;
+}
+
+.modal-bg {
+  position: fixed;
+  inset: 0;
+  background-image: url("assets/images/exit-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 2s ease-in-out;
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.modal-bg.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+/* === Map === */
+#map {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+#map.show {
+  opacity: 1;
+}
+
+/* === Map UI === */
+#mapUI {
+  display: none;
+  z-index: 950;
+  position: relative;
+}
+
+/* === Page Title === */
+#pageTitle {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  color: lab(82.42% 4.41 40.41 / 0.808);
+  background: rgba(39, 66, 87, 0.92);
+  padding: 15px 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  animation: fadeIn 2s ease-in-out;
+}
+
+#pageTitle h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#pageTitle h2 {
+  margin: 5px 0 0 0;
+  font-size: 16px;
+  font-style: italic;
+  color: #ccc;
+}
+
+/* === Timeline === */
+#timelineControl {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  z-index: 1001;
+  background: rgba(39, 66, 87, 0.92);
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-family: 'Georgia', serif;
+  color: rgb(238, 234, 230);
+}
+
+#timelineControl select {
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+/* === Reopen & Exit Buttons === */
+#reopenIntro, #openExit {
+  display: none;
+  position: absolute;
+  top: 110px;
+  background: rgb(238, 234, 230);
+  color: rgba(39, 66, 87, 0.92);
+  border: none;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
+  font-family: 'Georgia', serif;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 999;
+}
+
+#reopenIntro {
+  left: 175px;
+  background: rgb(238, 234, 230);
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  }
+  
+  #reopenIntro.show {
+    display: block;
+    opacity: 1;
+  }
+  #reopenIntro:hover {
+    background: rgba(255, 255, 255, 1);
+  }
+  #openExit:hover {
+    background: rgba(255, 255, 255, 1);
+  }
+
+#openExit {
+  left: 290px;
+  display: none;
+    display: none;
+    opacity: 0;
+    position: absolute;
+    top: 110px;
+    left: 290px;
+    background: rgb(238, 234, 230);
+    color: rgba(39, 66, 87, 0.92);
+    border: none;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    font-family: 'Georgia', serif;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 900;
+    transition: opacity 0.6s ease-in-out;
+  }
+  
+  #openExit.show {
+    display: block;
+    opacity: 1;
+  }
+#exitModal {
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+#exitModal.show {
+  opacity: 1;
+  display: flex;
+}
+
+
+
+/* === Popups === */
+.leaflet-popup-content {
+  font-family: 'Courier New', monospace;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(30, 49, 67, 0.92);
+   
+}
+
+.popup-img {
+  border-radius: 8px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.leaflet-popup {
+  z-index: 10001 !important;
+}
+
+
+/* === Glow for Evacuation Zones === */
+@keyframes pulse-glow {
+  0% { stroke-opacity: 0.3; }
+  50% { stroke-opacity: 1; }
+  100% { stroke-opacity: 0.3; }
+}
+
+.leaflet-interactive.zone-glow {
+  stroke: white;
+  stroke-width: 2;
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+/* === Zoom & Map Controls === */
+.leaflet-top.leaflet-left {
+  top: 120px;
+  left: 20px;
+}
+
+.leaflet-control-zoom {
+  margin-top: 50px;
+}
+
+.leaflet-marker-icon {
+  transition: opacity 0.4s ease;
+}
+
+/* === Animations === */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}

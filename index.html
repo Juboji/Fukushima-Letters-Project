@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Fukushima Letters Project</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-easybutton/src/easy-button.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Intro Background -->
+    <div id="intro-bg"></div>
+
+
+    <!-- Intro Text Box -->
+    <div id="intro-text" class="modal hidden">
+      <div class="modal-content">
+        <h1>Introduction</h1>
+        <p>On March 11, 2011, a convergence of seismic, oceanic, and nuclear forces transformed the northeastern coast of Japan into a site of rupture. The Fukushima Daiichi nuclear disaster, triggered by an earthquake and ensuing tsunami, was not merely a failure of infrastructure; it was a failure of imagination, of foresight, and of the very systems meant to safeguard against collapse. As Paul Virilio argues, every technological invention is also the invention of its accident. The nuclear plant is not only a symbol of energy and progress—it is the latent architecture of catastrophe. Fukushima, then, was not an anomaly, it was the inevitable realisation of risks engineered into the very design of modernity.</p>
+
+        <p>In the aftermath of disaster, it is tempting to seek solace in explanation—to identify causes, assign blame, to fold the event neatly back into legibility. Yet some events resist this domestication. As Nassim Nicholas Taleb’s Black Swan theory contends, certain events—rare, high-impact, and retrospectively rationalised—reveal not just the fragility of prediction, but the deep flaws in how institutions perceive and prepare for risk. While popularly misinterpreted as a theory of the “completely unforeseeable,” Taleb stresses that Black Swans often have precedents—patterns, warnings, or prior events that go unheeded. What makes them feel unforeseen is not their objective improbability, but the systemic blindness that renders them unintelligible or irrelevant until after the fact.</p>
+      
+        <p>In this sense, the Fukushima disaster—like the COVID-19 pandemic—did not emerge from a void. It followed a lineage of ignored signals. What Taleb critiques is not merely our inability to predict, but the institutional and cognitive refusal to imagine discontinuity, to embrace uncertainty, and to prepare for failure. Black Swans expose the hubris of believing that the future will behave like the past—not because events repeat precisely, but because the structures through which we interpret risk remain stubbornly the same. In this light, Fukushima was not a singular deviation, but the material unfolding of systemic inevitability—an accident foretold by the architecture of its own design.</p>
+      
+        <p>Together, these theories dismantle the notion that risk can ever be fully contained. More profoundly, they ask us to confront the fragility of the social, political, and ethical scaffolding that sustains trust in large-scale technological systems. Risk, in this context, is not only a calculable variable, but also a narrative.</p>
+      
+        <p>Yet even as these theories expose the limits of foresight, they compel us to ask more unsettling questions: not just whether we can prepare for disaster, but what such preparation demands. If every invention carries the seed of its own accident, as Virilio argues, then the pursuit of total safety risks becoming its own form of violence: a project not of care, but of control. When does precaution slide into preemption? When does governance drift into paranoia?</p>
+      
+        <p>The challenge is not to anticipate every possible catastrophe—that would require a level of omniscience no institution can bear. Rather, it is to live with the impossibility of total preparedness without collapsing into either complacency or despair. To do so demands a different kind of risk politics: one that accepts structural vulnerability as a given, while resisting the lure of closure, certainty, or technical fixes. It means cultivating a preparedness rooted not only in models and metrics, but in humility and relational awareness. Uncertainty, in this view, is not a flaw in the system. It is the system’s most honest feature. And it is where our ethical responsibilities begin—not end.</p>
+      
+        <p>And yet, in moments of crisis, it is not reason that speaks first. It is affect—confusion, silence, grief—those visceral intensities that precede comprehension and exceed the boundaries reason and logic attempt to draw around human experience. Such moments lay bare the limits of the frameworks we depend on to make sense of environmental catastrophe. The models, metrics, and risk assessments that dominate disaster response may help manage consequences, but they often fail to grasp the relational and symbolic dimensions of rupture. This insufficiency is not incidental—it is structural.</p>
+      
+        <p>Technocratic paradigms tend to obscure the messiness of lived experience, privileging calculability over accountability, control over care. In the wake of Fukushima several narratives emerged, each vying to explain what had happened and what should come next. But beneath these stories lay deeper struggles: over authority, over truth, over whose voices would be heard. In such moments, affect and familiarity often stand in for legitimacy, and institutional narratives can just as easily stabilise as they can betray public trust. When the language of safety collapses under the weight of catastrophe, what remains is something far more fragile: the raw, unsettled terrain of human interpretation.</p>
+      
+        <p>This project seeks to appraise that terrain. Presented here is an interactive map populated by a series of fictionalised letters, each written from the imagined perspective of an individual or institutional actor situated within the Fukushima disaster. These voices span positionalities—government officials, nuclear technicians, displaced residents, even speculative actors from the future. Their geospatial placement does not aim to reconstruct a precise chronology, nor to claim authoritative truth, but to trace the psychic and ethical topographies of disaster: disorientation, denial, resilience, reckoning. These are not testimonies in the legal sense, nor policy documents or academic analyses. They are, instead, fragments, wholly subjective, contradictory, and incomplete. And it is precisely this incompleteness that renders them powerful.</p>
+      
+        <p>Drawing from recent literature in narrative ethics, this project approaches storytelling not as a way to represent lived experience directly, but as a method of engaging the moral contours of what disaster does to meaning, memory, and voice. These letters do not attempt to speak for those affected by Fukushima. Rather, they explore how disaster unsettles knowledge itself—how affect, silence, and rupture defy containment by official discourse. To map these speculative voices is to resist the flattening tendencies of technocratic storytelling. It is to ask how risk feels, not just how it is modelled. It is to hold space for contradiction and complexity, for the coexistence of grief and resilience, silence and testimony, clarity and confusion.</p>
+      
+        <p>This is not a search for closure, but a practice of remaining with what does not resolve—what refuses to be rendered palatable into policy or absorbed by institutional memory. In this sense, the project draws on what Walter Benjamin described as “brushing history against the grain,” refusing the tidy progressions of official narrative in favour of something more fractured, more uncertain, and perhaps more truthful.</p>
+        <button id="continue-btn">Continue</button>
+      </div>
+    </div>
+  
+    <!-- Disclaimer Box -->
+    <div id="disclaimer" class="modal hidden">
+    <div class="modal-content">
+      <h1>Disclaimer</h1>
+      <p>This project presents a series of fictionalised letters written from the imagined perspectives of individuals and institutions shaped by the 2011 Fukushima Daiichi nuclear disaster. These voices are not intended to speak for survivors, displaced residents, or those still living with the very real consequences of Fukushima. Rather, they are speculative reflections, crafted through research and critical theory to explore how disaster moves not only through infrastructures, but through memory, affect, and narrative.</p>
+  
+      <p>I write from outside these experiences, and I acknowledge the limitations and risks of imagining voices shaped by trauma and loss. Fiction can never substitute for lived experience, and this work does not attempt to do so. Instead, it aims to ask what kinds of stories emerge when official narratives fracture—when models fail, when trust collapses, and when the question of what “counts” as knowledge is called into question.</p>
+      
+      <p>Some letters are written from within power structures—policy makers, technicians, executives—whose voices are often preserved in institutional archives. Others are from those whose experiences tend to remain unrecorded throughout history. These are not meant to universalise or dramatise suffering, but to hold space for emotional, political, and ethical complexity.</p>
+      
+      <p>In sharing them, I hope to foreground not only the conditions of risk and failure, but also the difficulty—and the responsibility—of storytelling itself.</p>
+      <button id="enter-btn">Enter</button>
+    </div>
+  </div>
+<!-- Reference Button with Icon -->
+<button id="referenceBtn" onclick="openReference()">
+  <img src="assets/images/icon-book.png" alt="Reference Icon" />
+</button>
+
+<!-- Reference Modal -->
+<div id="referenceModal" class="modal fullscreen" style="display: none;">
+  <div class="modal-bg"></div>
+  <div class="modal-content">
+    <h1>Reference List</h1>
+    <ul>
+      <li>Benjamin, W., 1968. <em>Illuminations</em>. Translated by H. Zohn. Edited by H. Arendt. New York: Schocken Books.</li>
+      <li>BBC News, 2011. Japan earthquake: Hundreds dead and missing after tsunami. [online] 11 March. Available at: <a href="https://www.bbc.co.uk/news/world-asia-pacific-12709598" target="_blank">https://www.bbc.co.uk/news/world-asia-pacific-12709598</a> [Accessed 13 Apr. 2025].</li>
+      <li>Charon, R., 2006. <em>Narrative Medicine: Honoring the Stories of Illness</em>. Oxford: Oxford University Press.</li>
+      <li>Frank, A.W., 1995. <em>The Wounded Storyteller: Body, Illness, and Ethics</em>. Chicago: University of Chicago Press.</li>
+      <li>Greenpeace International, n.d. Fukushima. [online] Available at: <a href="https://www.greenpeace.org/international/tag/fukushima/" target="_blank">https://www.greenpeace.org/international/tag/fukushima/</a> [Accessed 15 Apr. 2025].</li>
+      <li>International Atomic Energy Agency (IAEA), 2015. <em>The Fukushima Daiichi Accident</em>. [online] Available at: <a href="https://www.iaea.org/publications/10962/the-fukushima-daiichi-accident" target="_blank">https://www.iaea.org/publications/10962/the-fukushima-daiichi-accident</a> [Accessed 13 Apr. 2025].</li>
+      <li>National Diet of Japan, 2012. <em>The Official Report of The Fukushima Nuclear Accident Independent Investigation Commission (NAIIC)</em>. [online] Available at: <a href="https://warp.da.ndl.go.jp/info:ndljp/pid/3856371/naiic.go.jp/en/" target="_blank">https://warp.da.ndl.go.jp/info:ndljp/pid/3856371/naiic.go.jp/en/</a> [Accessed 13 Apr. 2025].</li>
+      <li>NHK World-Japan, n.d. Fukushima Monologue. [online] Available at: <a href="https://www3.nhk.or.jp/nhkworld/en/shows/fukushimamonologue/" target="_blank">https://www3.nhk.or.jp/nhkworld/en/shows/fukushimamonologue/</a> [Accessed 13 Apr. 2025].</li>
+      <li>Perrow, C., 1984. <em>Normal Accidents: Living with High-Risk Technologies</em>. Princeton, NJ: Princeton University Press.</li>
+      <li>Taleb, N.N., 2007. <em>The Black Swan: The Impact of the Highly Improbable</em>. New York: Random House.</li>
+      <li>Virilio, P., 2007. <em>The Original Accident</em>. Translated by J. Rose. Cambridge: Polity Press.</li>
+    </ul>
+    </p>
+    <button onclick="closeReference()">Close</button>
+  </div>
+</div>
+  <!-- MAP UI (will stay hidden during intro) -->
+  <div id="mapUI">
+    <div id="pageTitle">
+      <h1>The Fukushima Letters Project</h1>
+      <h2>A Cartography of Memory</h2>
+    </div>
+
+    <div id="timelineControl">
+      <label for="timelinePhase">Phase:</label>
+      <select id="timelinePhase" onchange="togglePhase(this.value)">
+        <option value="all">Show All</option>
+        <option value="march11">March 11th</option>
+        <option value="evacuation">Evacuation</option>
+        <option value="legacy">Legacy</option>
+      </select>
+    </div>
+  </div>
+  
+
+
+  <button id="reopenIntro" onclick="openIntro()">Introduction</button>
+  
+  <button id="openExit" onclick="showExitModal()">Reflection</button>
+
+  <audio id="chimeSound" src="assets/audio/chime.mp3" preload="auto"></audio>
+
+  <!-- Final Reflection Modal -->
+  <div id="exitModal" class="modal fullscreen" style="display: none;">
+    <div class="modal-bg"></div> <!-- background image layer -->
+    <div class="modal-content">
+      <h1>Final Reflection</h1>
+
+<p>This project began with a disaster. But it ends somewhere else—not with resolution, or even understanding, but with a sharpened recognition of what remains resistant to narrative form.</p>
+
+<p>The Fukushima Daiichi disaster has been extensively documented. What remains less visible are the silences around it, the unresolved, the untranslatable. This work does not aim to fill those silences with facts, nor to translate grief into legibility. Instead, it attempts to remain with what lingers. If the introduction asks what happened, this reflection asks what is still happening, and what cannot be known.</p>
+
+<p>The map at the heart of this project holds a particular tension. It suggests order. It is a visual structure associated with neutrality, accuracy, and completeness. A map claims to show us where things are, where they ought to be. But in this case, the map becomes a site of failure. It cannot register the emotional geography of loss, nor can it contain the disorientation of disaster. The illusion of totality it provides—like the models that preceded Fukushima—can be comforting, but it is also misleading. Where is grief located? Where do we place accountability? These are not questions a map can answer.</p>
+
+<p>And yet, we need the map. Just as we need stories. Not because they provide closure, but because they remind us that knowledge is always partial and contingent. The speculative letters were never meant to offer “truth” in any empirical sense. Rather, they enact a form of critical empathy: a way of exploring what happens when institutions collapse, when language falters, and when people are left to interpret their world with the tools they have. In that sense, these letters are not case studies; they are affective documents. They gesture toward the limits of what technocratic systems can see or hold.</p>
+
+<p>This is where storytelling becomes both a risk and a responsibility. To imagine voices is not to possess them. It is to approach them with humility, to ask what it means to represent without claiming to know. In this way, this project does not offer a lesson so much as it invites a site of reckoning: with the systems we trust, the stories we tell, and the silences we inherit.</p>
+
+<p>The lesson of Fukushima may not lie in what it can teach us about risk governance, but in the discomfort of knowing that much was already known and how nothing was done. To frame disaster as a moment of insight is already to flatten its meaning. Instead, what is needed is a politics of remaining with—a sustained attention to the narratives that emerge when official ones collapse. In this way, each letter becomes a site of friction: between past and future, between speech and silence, between the systems that failed and the people who endured.</p>
+
+<p>Perhaps this is what it means to “brush history against the grain”—not simply to reject official narratives, but to hold space for the splintered, unresolved ones. Not to map the disaster, but to remain attentive to what refuses to be mapped.</p>
+
+<button onclick="closeExit()">Close</button>
+    </div>
+  </div>
+
+
+  <!-- Map Container -->
+  <div id="map"></div>
+
+  <div id="letterModal" class="modal hidden">
+    <div class="modal-content">
+      <span id="closeModal">&times;</span>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+  
+
+  <!-- Background Audio -->
+  <audio id="bg-audio" preload="auto" loop>
+    <source src="assets/audio/background.mp3" type="audio/mpeg">
+  </audio>
+  
+  
+
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet-easybutton/src/easy-button.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>
