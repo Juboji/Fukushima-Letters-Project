@@ -30,10 +30,11 @@ function showDisclaimer() {
   document.querySelector('#disclaimer .modal-content').scrollTop = 0;
 }
 
+
 //fade out disclaimer, show map, play audio
 function enterExperience() {
   if (bgAudio) {
-    bgAudio.volume = 0.4;
+    bgAudio.volume = 0.1;
 
     const playPromise = bgAudio.play();
     if (playPromise !== undefined) {
@@ -44,9 +45,8 @@ function enterExperience() {
         
           setTimeout(() => {
             fadeAudio(bgAudio, 0.1, 3000); 
-          }, 240000); 
-        })
-        .catch(err => console.warn("Audio playback blocked:", err));
+          }, 5000); 
+        }).catch(err => console.warn("Audio playback blocked:", err));
     }
   }
 
