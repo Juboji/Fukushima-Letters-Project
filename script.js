@@ -32,13 +32,20 @@ function showDisclaimer() {
 
 //fade out disclaimer, show map, play audio
 function enterExperience() {
-  
   if (bgAudio) {
     bgAudio.volume = 0.4;
+
     const playPromise = bgAudio.play();
     if (playPromise !== undefined) {
       playPromise
-        .then(() => console.log("Audio playback started"))
+        .then(() => {
+          console.log("Audio playback started");
+
+        
+          setTimeout(() => {
+            fadeAudio(bgAudio, 0.1, 3000); 
+          }, 240000); 
+        })
         .catch(err => console.warn("Audio playback blocked:", err));
     }
   }
@@ -81,6 +88,13 @@ window.addEventListener('DOMContentLoaded', () => {
   // Attach buttons
   continueBtn.addEventListener('click', showDisclaimer);
   enterBtn.addEventListener('click', enterExperience);
+
+  const letterModal = document.getElementById("letterModal");
+  letterModal.addEventListener("click", (event) => {
+    if (event.target === letterModal) {
+      closeLetterModal();
+    }
+  });
 });
 
 // Reopen Intro
@@ -234,10 +248,15 @@ actors.forEach(actor => {
     const popupLatLng = marker.getLatLng();
 
     // Pan the map to center 
-    map.panTo(popupLatLng, {
-      animate: true,
-      duration: 0.5
-    });
+    setTimeout(() => {
+      const point = map.latLngToContainerPoint(popupLatLng);
+      const adjustedPoint = L.point(point.x, point.y - 190); 
+      const adjustedLatLng = map.containerPointToLatLng(adjustedPoint);
+      map.panTo(adjustedLatLng, {
+        animate: true,
+        duration: 0.5
+      });
+    }, 0);
 
     // Track viewed actors
     viewedActors.add(actor.name);
@@ -300,6 +319,8 @@ function togglePhase(phase) {
 function openLetterModal(actorId) {
   const modal = document.getElementById("letterModal");
   const content = document.getElementById("modalContent");
+
+  
 
  
   const letters = {
@@ -529,6 +550,13 @@ Megumi</p>
 
   content.innerHTML = letter;
   modal.classList.remove("hidden");
+
+  document.querySelector('#letterModal .modal-content').scrollTop = 0;
+}
+
+function closeLetterModal() {
+  const modal = document.getElementById("letterModal");
+  modal.classList.add("hidden");
 }
 function showExitModal() {
   const modal = document.getElementById("exitModal");
