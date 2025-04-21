@@ -147,7 +147,7 @@ const actors = [
     name: "TEPCO Executive",
     coords: [35.68, 139.76],
     img: "tepco.jpg",
-    text: "We face not only a natural disaster—but a political one.",
+    text: "But let us not forget that we face not only a natural disaster but also a political one.",
     id: "tepco",
     phase: "march11"
   },
@@ -155,7 +155,7 @@ const actors = [
     name: "Plant Worker",
     coords: [37.421, 141.032],
     img: "plant-worker.jpg",
-    text: "We’re trying to keep moving, but I don’t know what will happen, what tomorrow will bring.",
+    text: "We’re trying to keep things moving, but I don’t know what will happen, what tomorrow will bring.",
     id: "plantWorker",
     phase: "march11"
   },
@@ -163,7 +163,7 @@ const actors = [
     name: "Citizen",
     coords: [37.45, 141.02],
     img: "citizen.jpg",
-    text: "We don’t just rebuild homes—we rebuild the strength to carry on.",
+    text: "I don’t know if I want to go home or just remember it—as it was, not as it is now, in all its fallen glory.",
     id: "citizen",
     phase: "march11"
   },
@@ -171,15 +171,15 @@ const actors = [
     name: "Mayor",
     coords: [37.63, 141.00],
     img: "mayor.jpg",
-    text: "Minamisoma is more than a place. It’s a memory we carry, even as we leave it behind.",
+    text: "Together, we will rebuild, and together, we will restore what has been lost.",
     id: "mayor",
     phase: "evacuation"
   },
   {
-    name: "Scientist",
+    name: "Nuclear Scientist",
     coords: [37.75, 140.53],
     img: "scientist.jpg",
-    text: "It’s difficult to predict the full scope of the consequences. But we can’t afford to pretend otherwise.",
+    text: " I believe it is important that the full complexity of the situation is communicated, even if that means presenting difficult truths.",
     id: "scientist",
     phase: "evacuation"
   },
@@ -187,12 +187,12 @@ const actors = [
     name: "Cleanup Crew",
     coords: [37.60, 140.75],
     img: "cleanup.jpg",
-    text: "A lot remains unknown. But we’re still here, trying to hold the line.",
+    text: "While progress is being made, the complexity of the situation means we must remain cautious in our approach.",
     id: "cleanup",
     phase: "evacuation"
   },
   {
-    name: "Greenpeace Executive",
+    name: "Greenpeace Japan",
     coords: [38.4, 140.84],
     img: "observer.jpg",
     text: "At this stage, it is clear that the Fukushima disaster is not only a national crisis but a global one.",
@@ -258,22 +258,26 @@ actors.forEach(actor => {
       });
     }, 0);
 
-    // Track viewed actors
+    // Track viewed actors]
+    let chimePlayed = false;
     viewedActors.add(actor.name);
+   
+if (viewedActors.size === totalActors && !chimePlayed) {
+  chimePlayed = true; 
 
-    if (viewedActors.size === totalActors) {
-      const chime = document.getElementById("chimeSound");
-      const ambient = document.getElementById("bg-audio");
+  const chime = document.getElementById("chimeSound");
+  const ambient = document.getElementById("bg-audio");
 
-      if (ambient) ambient.volume = 0.2;
-      if (chime) {
-        chime.volume = 0.8;
-        chime.play();
-      }
+  if (ambient) ambient.volume = 0.2;
+  if (chime) {
+    chime.volume = 0.8;
+    chime.play();
+  }
 
-      setTimeout(() => {
-        if (ambient) ambient.volume = 0.5;
-      }, 2500);
+  setTimeout(() => {
+    if (ambient) ambient.volume = 0.5;
+  }, 2500);
+
 
       const exitBtn = document.getElementById("openExit");
       exitBtn.style.display = "block"; 
@@ -363,7 +367,7 @@ Tokyo Electric Power Company (TEPCO)</p>
 
 <p>We’re still at the plant. Some areas are being cleared. I don’t know if I’ll be sent somewhere else or if we’re expected to hold the line here. I just know I wanted to write this down in case I don’t get another chance.</p>
 
-<p>I’m terrified, if I’m honest. Everyone is. We’re trying to keep moving, but I don’t know what will happen, what tomorrow will bring, but just know that I’m thinking of you.</p>
+<p>I’m terrified, if I’m honest. Everyone is. We’re trying to keep things moving, but I don’t know what will happen, what tomorrow will bring, but just know that I’m thinking of you.</p>
 
 <p><strong>Love,<br>
 Haru</strong></p>
@@ -431,7 +435,7 @@ Katsunoba Sakurai</p>
 
 <p>While we are working around the clock to manage this crisis, it’s important to acknowledge that the situation is not entirely under control at this stage. There are operational and technical challenges that are still being addressed. However, public communication has become an increasingly complex issue. I am aware that there is significant pressure to present a less alarming picture of the situation, especially given the potential for widespread panic.</p>
 
-<p>I understand the need for calm and stability, but I must also stress that, from a technical standpoint, this is a serious event. The conditions are evolving, and it’s difficult to predict the full scope of the consequences at this time. I am doing everything in my capacity to mitigate the risks, but I believe it is important that the full complexity of the situation is communicated, even if that means presenting difficult truths.</p>
+<p>I understand the need for calm and stability, but I must also stress that, from a technical standpoint, this is a serious event. The conditions are evolving, and it’s difficult to predict the full scope of the consequences at this time. We are doing everything in our capacity to mitigate the risks, but I believe it is important that the full complexity of the situation is communicated, even if that means presenting difficult truths.</p>
 
 <p>I hope this letter serves to clarify the reality of the situation. We are working diligently to address the immediate issues and will continue to provide updates as we gather more data.</p>
 
@@ -452,9 +456,9 @@ K. T.</p>
 
 <p>The uncertainty of the situation is a challenge. We are unsure of the full extent of the contamination or the long-term environmental effects, as the data continues to evolve. It is difficult to predict the long-term impact of radiation exposure on both the plant site and surrounding areas. Our primary focus remains on containment, stabilisation, and ensuring the safety of the workers involved.</p>
 
-<p>While the cleanup process is ongoing, it is clear that the work will take a significant amount of time. We are committed to following strict safety protocols and continuing our efforts to minimise the risk to both workers and the general population, but we need more information and transparency.</p>
+<p>While the cleanup process is ongoing, it is clear that the work will take a significant amount of time. We are committed to following strict safety protocols and continuing our efforts to minimise the risk to both workers and the general population, but still we need more information and transparency.</p>
 
-<p>We will continue to monitor the situation and provide further updates as new information becomes available.</p>
+<p>We will continue to monitor the situation and provide further updates as new information becomes available on our side.</p>
 
 <p>Best regards,<br>
 H. S.</p>
@@ -473,13 +477,6 @@ H. S.</p>
   <p>Greenpeace Japan is currently coordinating efforts to collect data, support local civil society groups, and engage with independent experts to document radiation exposure and potential long-term environmental impacts. Based on preliminary assessments and past patterns of regulatory failure, we believe this disaster reveals fundamental flaws in Japan’s nuclear risk governance framework—especially its overreliance on probabilistic safety models and the lack of sufficient multi-hazard contingency planning.</p>
 
   <p>Specifically, we are urging international attention to the following concerns:</p>
-
-  <ul>
-    <li><strong>Regulatory capture</strong> and the close relationship between nuclear operators (especially TEPCO) and oversight agencies, which hindered early interventions.</li>
-    <li><strong>Insufficient tsunami modelling and infrastructure hardening</strong>, despite repeated warnings from independent seismologists and safety engineers.</li>
-    <li><strong>Opaque communication protocols</strong> that have contributed to confusion and eroded public trust.</li>
-    <li><strong>Unresolved long-term waste storage issues</strong>, now exacerbated by infrastructure damage and reactor instability.</li>
-  </ul>
 
   <p>We recommend that Greenpeace International continue to frame this event not as an exceptional failure, but as an inevitable consequence of systemic risk within tightly coupled and aging nuclear systems. Furthermore, as we’ve discussed in previous campaigns, the continued reliance on nuclear energy undermines global commitments to sustainable and resilient energy transitions. We see this moment as a critical juncture for mobilising international discourse around energy justice, environmental precaution, and the need to accelerate investment in decentralised, renewable alternatives.</p>
 
@@ -687,7 +684,7 @@ primeMinisterZone.bindPopup(`
 
     <p>First and foremost, my heart lies with those affected by the nuclear accident at the Fukushima Daiichi Plant. I assure you that the government is fully committed to protecting the lives and well-being of every citizen. We are doing everything within our power to ensure that those who have been displaced by the tsunami are receiving the care and support they need. Emergency teams are working tirelessly across the nation, and our first priority is to provide aid to the regions most affected.</p>
 
-    <p>Regarding the situation at Fukushima, I want to assure the public that we, the government, in close coordination with TEPCO and other relevant agencies, are working around the clock to contain the situation. The safety of the Japanese people is our utmost concern, and we are taking every necessary measure to prevent further harm. We are closely monitoring radiation levels, and evacuations are being carried out as a precaution.</p>
+    <p>Regarding the situation at Fukushima, I want to assure the public that we, in close coordination with TEPCO and other relevant agencies, are working around the clock to contain the situation. The safety of the Japanese people is our utmost concern, and we are taking every necessary measure to prevent further harm. We are closely monitoring radiation levels, and evacuations are being carried out as a precaution.</p>
 
     <p>I understand that this situation has caused anxiety and uncertainty across the country. We must not be swayed by fear but remain resolute and united in the face of this crisis. Japan is resilient, not because we are unshaken, but because we have always endured, adapted, and rebuilt. We will face this challenge together, with courage and with determination.</p>
 
