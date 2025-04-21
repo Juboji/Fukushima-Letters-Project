@@ -1,4 +1,4 @@
-// Initialize map
+// Initialise map
 const map = L.map('map').setView([37.422, 141.032], 7);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 18,
@@ -17,7 +17,7 @@ const continueBtn = document.getElementById('continue-btn');
 const enterBtn = document.getElementById('enter-btn');
 const bgAudio = document.getElementById('bg-audio');
 
-// Step 3: Show disclaimer
+// Show disclaimer
 function showDisclaimer() {
   introText.classList.add('hidden');
   introText.classList.remove('show');
@@ -30,9 +30,9 @@ function showDisclaimer() {
   document.querySelector('#disclaimer .modal-content').scrollTop = 0;
 }
 
-// Step 4: Enter → fade out disclaimer, show map, play audio
+//fade out disclaimer, show map, play audio
 function enterExperience() {
-  // Try to play audio immediately
+  
   if (bgAudio) {
     bgAudio.volume = 0.4;
     const playPromise = bgAudio.play();
@@ -112,22 +112,22 @@ function openIntro() {
   exitBtn.classList.remove('show');
 setTimeout(() => {
   exitBtn.style.display = 'none';
-}, 500); // wait for fade-out if needed
+}, 500);
 
 }
 
 
 
-// Initialize custom pane for markers
 
-// Create panes only once
+
+//  panes 
 map.createPane('zonePrimeMinister');
 map.getPane('zonePrimeMinister').style.zIndex = 600;
 
 map.createPane('markerPane');
 map.getPane('markerPane').style.zIndex = 652;
 
-// Define actors with modal support and timeline phases
+// Define actors 
 const actors = [
   {
     name: "TEPCO Executive",
@@ -203,7 +203,7 @@ const actors = [
   }
 ];
 
-// Add actor markers
+// actor markers
 const actorMarkers = [];
 const viewedActors = new Set();
 const totalActors = actors.length;
@@ -230,10 +230,10 @@ actors.forEach(actor => {
     // Open popup first
     marker.openPopup();
 
-    // Get marker coordinates and center the map there
+    // Get marker coordinates and center the map
     const popupLatLng = marker.getLatLng();
 
-    // Pan the map to center exactly on the popup (you can offset if needed)
+    // Pan the map to center 
     map.panTo(popupLatLng, {
       animate: true,
       duration: 0.5
@@ -257,20 +257,20 @@ actors.forEach(actor => {
       }, 2500);
 
       const exitBtn = document.getElementById("openExit");
-      exitBtn.style.display = "block"; // Make it visible
+      exitBtn.style.display = "block"; 
       setTimeout(() => {
-        exitBtn.classList.add("show"); // Then fade it in
+        exitBtn.classList.add("show"); 
       }, 10);
     }
   });
 
-  actorMarkers.push(marker); // Ensure markers are added to the actorMarkers array
+  actorMarkers.push(marker); 
 });
 
 // Timeline phase filtering
 function togglePhase(phase) {
   actorMarkers.forEach(marker => {
-    const actorPhase = marker.actorPhase; // Use the custom actorPhase property
+    const actorPhase = marker.actorPhase; 
     const shouldShow = phase === "all" || actorPhase === phase;
     const markerEl = marker.getElement();
 
@@ -288,7 +288,7 @@ function togglePhase(phase) {
         markerEl.style.opacity = '0';
         setTimeout(() => {
           if (map.hasLayer(marker)) map.removeLayer(marker);
-        }, 400); // Wait for fade-out before removing
+        }, 400); 
       } else {
         map.removeLayer(marker);
       }
@@ -301,7 +301,7 @@ function openLetterModal(actorId) {
   const modal = document.getElementById("letterModal");
   const content = document.getElementById("modalContent");
 
-  // Define the letters dictionary
+ 
   const letters = {
     tepco: `
     <p><strong>Date:</strong> March 22, 2011<br>
@@ -524,7 +524,7 @@ Megumi</p>
     `
   };
 
-  // Get the letter based on actorId or fallback if not found
+
   const letter = letters[actorId] || `<p><b>${actorId}</b> content not found.</p>`;
 
   content.innerHTML = letter;
@@ -552,7 +552,7 @@ function closeExit() {
 
   setTimeout(() => {
     modal.style.display = "none";
-  }, 1500); // Match CSS transition
+  }, 1500); 
 }
 
 function openReference() {
@@ -569,11 +569,11 @@ function closeReference() {
   modal.classList.remove("show");
   setTimeout(() => {
     modal.style.display = "none";
-  }, 500); // Match fade-out transition
+  }, 500); 
 }
 
 
-// Evacuation Zones (stacked with custom pane z-index)
+// Evacuation Zones
 map.createPane('zoneTop');
 map.getPane('zoneTop').style.zIndex = 650;
 
@@ -627,7 +627,7 @@ zones.forEach(zone => {
 });
 
 
-// Prime Minister – Symbolic Coverage (Tokyo)
+// Prime Minister
 var primeMinisterZone = L.polygon([
   [35.80, 139.50],
   [35.80, 139.95],
@@ -637,7 +637,7 @@ var primeMinisterZone = L.polygon([
   color: '#333',
   weight: 1,
   fillColor: '#000',
-  fillOpacity: 0.01, // nearly invisible
+  fillOpacity: 0.01, 
   pane: "markerPane"
 }).addTo(map);
 

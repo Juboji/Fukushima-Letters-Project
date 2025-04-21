@@ -20,7 +20,7 @@ body {
 .fade-in {
   opacity: 1 !important;
 }
-/* === Intro Text & Map UI Fade Logic === */
+/* === Intro Text & Map UI === */
 #intro-text,
 #mapUI {
   opacity: 0;
@@ -32,7 +32,7 @@ body {
   opacity: 1;
 }
 
-/* === Hidden Utility === */
+/* === Hidden  === */
 .hidden {
   visibility: hidden;
   opacity: 0;
@@ -91,7 +91,7 @@ body {
   font-family: 'Georgia', serif;
   font-size: 18px;
   line-height: 1.7;
-  max-height: 80vh; /* Limit modal height */
+  max-height: 80vh; 
 }
 
 .modal-content h1 {
@@ -108,7 +108,7 @@ body {
 
 .modal-content button {
   display: inline-block;
-  margin: 2rem auto 0 auto; /* Top margin + center align */
+  margin: 2rem auto 0 auto; 
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   font-family: 'Georgia', serif;
@@ -124,32 +124,31 @@ body {
 .modal-content button:hover {
   background-color: #e0e0e0;
 }
-/* Optional container if you want multiple buttons grouped together */
+
 .header-buttons {
   display: flex;
   gap: 10px;
   align-items: center;
 }
 
-/* General button reset styling (careful if this affects other buttons globally!) */
 button {
   background: none;
   border: none;
   cursor: pointer;
 }
 
-/* If you're using icon-based buttons */
+
 .icon {
   width: 24px;
   height: 24px;
   vertical-align: middle;
 }
 
-/* Reference button positioning and style */
+/* Reference button */
 #referenceBtn {
-  position: fixed; /* fixed = stays in place during scroll */
+  position: fixed; 
   bottom: 15px;
-  right: 15px; /* Adjust this based on layout */
+  right: 15px; 
   background: transparent;
   border: none;
   cursor: pointer;
@@ -161,7 +160,7 @@ button {
 }
 
 #referenceBtn img {
-  width: 170px;   /* <-- icon is always this size */
+  width: 170px;   
   height: 170px;
   display: block;
   transition: opacity 0.3s ease;
@@ -174,10 +173,10 @@ button {
 
 
 #referenceBtn:hover img {
-  opacity: 0.7; /* only affect opacity, not size */
+  opacity: 0.7; 
 }
 
-/* Reference modal fade-in and fade-out */
+/* Reference modal  */
 #referenceModal {
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
@@ -188,14 +187,14 @@ button {
 }
 #referenceModal a {
   color: rgb(238, 234, 230);
-  text-decoration: underline; /* Optional */
+  text-decoration: underline; 
   transition: color 0.3s ease;
 }
 
 #referenceModal a:hover {
   color: #ffffff; 
 }
-/* === Disclaimer (sharp appearance) === */
+/* === Disclaimer === */
 
 #disclaimer {
   display: none;
@@ -216,7 +215,7 @@ button {
 }
 
 
-/* === Intro Conflict Prevention === */
+/* === Intro Conflict === */
 #intro-text,
 #disclaimer {
   z-index: 1002;
