@@ -203,7 +203,7 @@ const actors = [
     name: "Child",
     coords: [37.30, 140.90],
     img: "child.jpg",
-    text: "Please don’t let me forget. And please don’t forget me.",
+    text: "One minute I was with you, and then came nothing. It doesn’t make sense.",
     id: "child",
     phase: "legacy"
   },
@@ -221,6 +221,8 @@ const actors = [
 const actorMarkers = [];
 const viewedActors = new Set();
 const totalActors = actors.length;
+
+let chimePlayed = false; 
 
 actors.forEach(actor => {
   const marker = L.marker(actor.coords, {
@@ -259,7 +261,6 @@ actors.forEach(actor => {
     }, 0);
 
     // Track viewed actors]
-    let chimePlayed = false;
     viewedActors.add(actor.name);
    
 if (viewedActors.size === totalActors && !chimePlayed) {
@@ -503,9 +504,7 @@ H. S.</p>
 
 <p>I still look for you sometimes, like if I just turn the corner or open the door, you’ll be there, waiting for me. I ask Grandma and Grandpa about you, and they just give me that sad look and say you’re gone. But how can you be gone? You were right there, right next to me. One minute I was with you, and then came nothing. It doesn’t make sense.</p>
 
-<p>Sometimes I feel like I can’t breathe when I think about how fast everything changed. How you’re not here, how I’ll never get to hear you call me by my name again, or how I’ll never see Papa smile when he makes dinner. It’s so hard, and I don’t know how to make it stop hurting.</p>
-
-<p>I feel like I’m carrying something heavy inside, like a weight that I can’t get rid of. It doesn’t go away. Sometimes it feels like it’s too much, like the emptiness in the house is inside me too. When I close my eyes, I can still see you, but it doesn’t feel real anymore. I can’t feel you holding me like I used to. I can’t hear your voice telling me everything’s going to be okay.</p>
+<p>Sometimes I feel like I can’t breathe when I think about how fast everything changed. I feel like I’m carrying something heavy inside, like a weight that I can’t get rid of. It doesn’t go away. Sometimes it feels like it’s too much, like the emptiness in the house is inside me too. When I close my eyes, I can still see you, but it doesn’t feel real anymore. I can’t feel you holding me like I used to. I can’t hear your voice telling me everything’s going to be okay.</p>
 
 <p>Writing this feels like the only way I can get close to you again. I don’t know if it’ll help, but I’m hoping if I say it, if I write it down, it’ll make me feel like you’re still here with me. But I miss you so much, more than I know how to say. I just want to hear you laugh again. I just want you to hold me.</p>
 
@@ -611,19 +610,22 @@ map.getPane('zoneBottom').style.zIndex = 630;
 
 const zones = [
   {
-    coords: [[37.45, 141.00],[37.45, 141.06],[37.38, 141.06],[37.38, 141.00]],
+    center: [37.415, 141.03], // Center of Exclusion Zone
+    radius: 20000, // 20 km
     color: "#f03",
     label: "Exclusion Zone (0–20 km)",
     pane: "zoneTop"
   },
   {
-    coords: [[37.50, 140.95],[37.50, 141.12],[37.35, 141.12],[37.35, 140.95]],
+    center: [37.425, 141.035], // Center of Voluntary Evacuation Zone
+    radius: 30000, // 30 km
     color: "orange",
     label: "Voluntary Evacuation Zone (20–30 km)",
     pane: "zoneMiddle"
   },
   {
-    coords: [[37.55, 140.90],[37.55, 141.18],[37.32, 141.18],[37.32, 140.90]],
+    center: [37.43, 141.04], // Center of Hotspot Monitoring Zone
+    radius: 45000, // 45 km
     color: "yellow",
     label: "Hotspot Monitoring Zone (30–45 km)",
     pane: "zoneBottom"
@@ -631,25 +633,27 @@ const zones = [
 ];
 
 zones.forEach(zone => {
-  let polygon = L.polygon(zone.coords, {
+  const circle = L.circle(zone.center, {
     color: zone.color,
     fillColor: zone.color,
     fillOpacity: 0.3,
+    radius: zone.radius,
     pane: zone.pane
-    
   }).addTo(map);
-  polygon.getElement().classList.add("zone-glow");
 
-  polygon.bindPopup(`<b>${zone.label}</b>`);
+  circle.getElement().classList.add("zone-glow");
 
-  polygon.on('mouseover', function () {
+  circle.bindPopup(`<b>${zone.label}</b>`);
+
+  circle.on('mouseover', function () {
     this.setStyle({ fillOpacity: 0.6 });
   });
 
-  polygon.on('mouseout', function () {
+  circle.on('mouseout', function () {
     this.setStyle({ fillOpacity: 0.3 });
   });
 });
+
 
 
 // Prime Minister
