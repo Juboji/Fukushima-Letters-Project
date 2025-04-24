@@ -41,12 +41,9 @@ function enterExperience() {
       playPromise
         .then(() => {
           console.log("Audio playback started");
-
-        
-          setTimeout(() => {
-            fadeAudio(bgAudio, 0.1, 3000); 
-          }, 5000); 
-        }).catch(err => console.warn("Audio playback blocked:", err));
+          // No further fading needed
+        })
+        .catch(err => console.warn("Audio playback blocked:", err));
     }
   }
 
@@ -260,6 +257,8 @@ actors.forEach(actor => {
       });
     }, 0);
 
+
+
     // Track viewed actors]
     viewedActors.add(actor.name);
    
@@ -269,15 +268,10 @@ if (viewedActors.size === totalActors && !chimePlayed) {
   const chime = document.getElementById("chimeSound");
   const ambient = document.getElementById("bg-audio");
 
-  if (ambient) ambient.volume = 0.2;
   if (chime) {
     chime.volume = 0.8;
     chime.play();
   }
-
-  setTimeout(() => {
-    if (ambient) ambient.volume = 0.5;
-  }, 2500);
 
 
       const exitBtn = document.getElementById("openExit");
